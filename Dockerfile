@@ -20,7 +20,9 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     lsb-release \
     sudo \
     tzdata \
-    bash-completion
+    bash-completion \
+    flightgear \
+    cmake
 
 COPY Tools/environment_install/install-prereqs-ubuntu.sh /ardupilot/Tools/environment_install/
 COPY Tools/completion /ardupilot/Tools/completion/

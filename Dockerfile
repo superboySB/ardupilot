@@ -24,7 +24,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     cmake \
     doxygen \
     cython3 \
-    cxxtest
+    cxxtest \
+    graphviz
 
 COPY Tools/environment_install/install-prereqs-ubuntu.sh /ardupilot/Tools/environment_install/
 COPY Tools/completion /ardupilot/Tools/completion/

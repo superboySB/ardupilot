@@ -21,7 +21,10 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     sudo \
     tzdata \
     bash-completion \
-    cmake
+    cmake \
+    doxygen \
+    cython3 \
+    cxxtest
 
 COPY Tools/environment_install/install-prereqs-ubuntu.sh /ardupilot/Tools/environment_install/
 COPY Tools/completion /ardupilot/Tools/completion/

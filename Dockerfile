@@ -25,7 +25,9 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     doxygen \
     cython3 \
     cxxtest \
-    graphviz
+    graphviz \
+    curl \
+    libcurl4-openssl-dev
 
 COPY Tools/environment_install/install-prereqs-ubuntu.sh /ardupilot/Tools/environment_install/
 COPY Tools/completion /ardupilot/Tools/completion/
@@ -58,6 +60,10 @@ RUN export ARDUPILOT_ENTRYPOINT="/home/${USER_NAME}/ardupilot_entrypoint.sh" \
 
 # Set the buildlogs directory into /tmp as other directory aren't accessible
 ENV BUILDLOGS=/tmp/buildlogs
+
+# Python
+RUN /usr/bin/python -m pip install setuptools==63.2.0 requests[socks]
+RUN /usr/bin/python -m pip install torch pymap3d geographiclib gymnasium wandb icecream setproctitle matplotlib
 
 # Cleanup
 RUN sudo apt-get clean \

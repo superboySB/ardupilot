@@ -19,7 +19,8 @@ RUN groupadd ${USER_NAME} --gid ${USER_GID}\
 RUN apt-get update && apt-get install --no-install-recommends -y \
     lsb-release sudo tzdata bash-completion \
     cmake doxygen cython3 cxxtest graphviz curl libcurl4-openssl-dev vim \
-    python3-tk python3-wxgtk4.0 libproj-dev proj-data proj-bin libgeos-dev
+    python3-tk python3-wxgtk4.0 libproj-dev proj-data proj-bin libgeos-dev \
+    libcanberra-gtk-module libcanberra-gtk3-module
 
 COPY Tools/environment_install/install-prereqs-ubuntu.sh /ardupilot/Tools/environment_install/
 COPY Tools/completion /ardupilot/Tools/completion/
@@ -55,7 +56,8 @@ ENV BUILDLOGS=/tmp/buildlogs
 
 # Python
 RUN /usr/bin/python -m pip install setuptools==63.2.0 requests[socks]
-RUN /usr/bin/python -m pip install torch pymap3d geographiclib gymnasium wandb icecream setproctitle matplotlib numpy pygame PyOpenGL PyOpenGL_accelerate geographiclib Cartopy
+RUN /usr/bin/python -m pip install torch pymap3d geographiclib gymnasium wandb icecream setproctitle matplotlib numpy \
+    pygame PyOpenGL PyOpenGL_accelerate geographiclib Cartopy opencv-python opencv-contrib-python
 
 # Cleanup
 RUN sudo apt-get clean \

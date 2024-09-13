@@ -55,7 +55,7 @@ ENV BUILDLOGS=/tmp/buildlogs
 
 # Python
 RUN /usr/bin/python -m pip install setuptools==63.2.0 requests[socks]
-RUN /usr/bin/python -m pip install torch pymap3d geographiclib gymnasium wandb icecream setproctitle matplotlib
+RUN /usr/bin/python -m pip install torch pymap3d geographiclib gymnasium wandb icecream setproctitle matplotlib numpy pygame PyOpenGL PyOpenGL_accelerate geographiclib Cartopy
 
 # Cleanup
 RUN sudo apt-get clean \

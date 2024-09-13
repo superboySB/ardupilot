@@ -29,7 +29,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     curl \
     libcurl4-openssl-dev \
     vim \
-    python3-tk
+    python3-tk \
+    python3-wxgtk4.0
 
 COPY Tools/environment_install/install-prereqs-ubuntu.sh /ardupilot/Tools/environment_install/
 COPY Tools/completion /ardupilot/Tools/completion/

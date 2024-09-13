@@ -20,5 +20,6 @@ nice fgfs \
     --fog-disable \
     --disable-specular-highlight \
     --disable-anti-alias-hud \
+    --disable-dbus \
     --wind=0@0 \
     $*

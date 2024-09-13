@@ -17,20 +17,9 @@ RUN groupadd ${USER_NAME} --gid ${USER_GID}\
     && useradd -l -m ${USER_NAME} -u ${USER_UID} -g ${USER_GID} -s /bin/bash
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
-    lsb-release \
-    sudo \
-    tzdata \
-    bash-completion \
-    cmake \
-    doxygen \
-    cython3 \
-    cxxtest \
-    graphviz \
-    curl \
-    libcurl4-openssl-dev \
-    vim \
-    python3-tk \
-    python3-wxgtk4.0
+    lsb-release sudo tzdata bash-completion \
+    cmake doxygen cython3 cxxtest graphviz curl libcurl4-openssl-dev vim \
+    python3-tk python3-wxgtk4.0 libproj-dev proj-data proj-bin libgeos-dev
 
 COPY Tools/environment_install/install-prereqs-ubuntu.sh /ardupilot/Tools/environment_install/
 COPY Tools/completion /ardupilot/Tools/completion/

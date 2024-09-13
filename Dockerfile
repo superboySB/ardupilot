@@ -17,7 +17,7 @@ RUN groupadd ${USER_NAME} --gid ${USER_GID}\
     && useradd -l -m ${USER_NAME} -u ${USER_UID} -g ${USER_GID} -s /bin/bash
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
-    lsb-release sudo tzdata bash-completion \
+    lsb-release sudo tzdata bash-completion net-tools \
     cmake doxygen cython3 cxxtest graphviz curl libcurl4-openssl-dev vim \
     python3-tk python3-wxgtk4.0 libproj-dev proj-data proj-bin libgeos-dev \
     libcanberra-gtk-module libcanberra-gtk3-module

@@ -22,9 +22,14 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     python3-tk python3-wxgtk4.0 libproj-dev proj-data proj-bin libgeos-dev \
     libcanberra-gtk-module libcanberra-gtk3-module libsfml-dev
 
+# ardupilot-gazebo
 RUN curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg && \
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null && \
     apt-get update && apt-get install gz-harmonic
+RUN apt install libgz-sim8-dev rapidjson-dev && \
+    apt install libopencv-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+RUN cd / && git clone https://github.com/superboySB/ardupilot_gazebo && 
+    cd ardupilot_gazebo && mkdir build && cd build && cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo && make -j4
 
 COPY Tools/environment_install/install-prereqs-ubuntu.sh /ardupilot/Tools/environment_install/
 COPY Tools/completion /ardupilot/Tools/completion/
@@ -54,6 +59,7 @@ RUN export ARDUPILOT_ENTRYPOINT="/home/${USER_NAME}/ardupilot_entrypoint.sh" \
     && echo 'exec "$@"' >> $ARDUPILOT_ENTRYPOINT \
     && chmod +x $ARDUPILOT_ENTRYPOINT \
     && sudo mv $ARDUPILOT_ENTRYPOINT /ardupilot_entrypoint.sh
+RUN echo 'export GZ_SIM_SYSTEM_PLUGIN_PATH=/ardupilot_gazebo/build:${GZ_SIM_SYSTEM_PLUGIN_PATH}' >> /home/${USER_NAME}/.bashrc
 
 # Set the buildlogs directory into /tmp as other directory aren't accessible
 ENV BUILDLOGS=/tmp/buildlogs

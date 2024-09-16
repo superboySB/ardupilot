@@ -22,6 +22,10 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     python3-tk python3-wxgtk4.0 libproj-dev proj-data proj-bin libgeos-dev \
     libcanberra-gtk-module libcanberra-gtk3-module libsfml-dev
 
+RUN curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null && \
+    apt-get update && apt-get install gz-harmonic
+
 COPY Tools/environment_install/install-prereqs-ubuntu.sh /ardupilot/Tools/environment_install/
 COPY Tools/completion /ardupilot/Tools/completion/
 
